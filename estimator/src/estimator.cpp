@@ -817,16 +817,16 @@ bool Estimator::failureDetection()
         ROS_INFO(" little feature %d", f_manager.last_track_num);
         //return true;
     }
-    if (Bas[WINDOW_SIZE].norm() > 2.5)
-    {
-        ROS_INFO(" big IMU acc bias estimation %f", Bas[WINDOW_SIZE].norm());
-        return true;
-    }
-    if (Bgs[WINDOW_SIZE].norm() > 1.0)
-    {
-        ROS_INFO(" big IMU gyr bias estimation %f", Bgs[WINDOW_SIZE].norm());
-        return true;
-    }
+    // if (Bas[WINDOW_SIZE].norm() > 2.5)
+    // {
+    //     ROS_INFO(" big IMU acc bias estimation %f", Bas[WINDOW_SIZE].norm());
+    //     return true;
+    // }
+    // if (Bgs[WINDOW_SIZE].norm() > 1.0)
+    // {
+    //     ROS_INFO(" big IMU gyr bias estimation %f", Bgs[WINDOW_SIZE].norm());
+    //     return true;
+    // }
     /*
     if (tic(0) > 1)
     {
@@ -834,17 +834,17 @@ bool Estimator::failureDetection()
         return true;
     }
     */
-    Vector3d tmp_P = Ps[WINDOW_SIZE];
-    if ((tmp_P - last_P).norm() > 5)
-    {
-        ROS_INFO(" big translation");
-        return true;
-    }
-    if (abs(tmp_P.z() - last_P.z()) > 1)
-    {
-        ROS_INFO(" big z translation");
-        return true; 
-    }
+    // Vector3d tmp_P = Ps[WINDOW_SIZE];
+    // if ((tmp_P - last_P).norm() > 50)
+    // {
+    //     ROS_INFO(" big translation");
+    //     return true;
+    // }
+    // if (abs(tmp_P.z() - last_P.z()) > 10)
+    // {
+    //     ROS_INFO(" big z translation");
+    //     return true; 
+    // }
     Matrix3d tmp_R = Rs[WINDOW_SIZE];
     Matrix3d delta_R = tmp_R.transpose() * last_R;
     Quaterniond delta_Q(delta_R);

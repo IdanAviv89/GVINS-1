@@ -39,6 +39,7 @@ docker run \
   --rm \
   --net=host \
   -v ${GVINS_DIR}:/root/catkin_ws/src/GVINS/ \
+  -v /home/idan/output:/root/output \
   gvins:latest \
   /bin/bash -c \
   "cd /root/catkin_ws/; \
@@ -49,6 +50,7 @@ docker run \
          -DCMAKE_BUILD_TYPE=Release; \
      catkin build; \
      source devel/setup.bash; \
+     export ROS_MASTER_URI=http://192.168.0.137:11311/; \
      roslaunch gvins ${1}"
 
 wait $ROSCORE_PID
